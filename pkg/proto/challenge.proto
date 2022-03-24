@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "./api";
+
+message Link {
+    string data = 1;
+}
+
+message Timer {
+    string name = 1;
+    int64 seconds = 2;
+    int64 frequency = 3;
+}
+
+message Placeholder {
+    string data = 1;
+}
+
+service ChallengeService {
+    rpc MakeShortLink(Link) returns (Link);
+    rpc StartTimer(Timer) returns (stream Timer);
+    rpc ReadMetadata(Placeholder) returns (Placeholder);
+}
